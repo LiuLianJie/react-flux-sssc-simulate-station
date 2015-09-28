@@ -2,9 +2,14 @@
 
 var React = require('react');
 var rn = require('random-number');
+var ReactPropTypes = React.PropTypes;
 var randerTimer = null;
+var AppActions = require('../actions/AppActions');
 
 var IdentifyCode = React.createClass({
+	propTypes:function(){
+		deviceid:ReactPropTypes.string
+	},
 	getInitialState:function(){
 		return {
 			randomCode:'0000'
@@ -12,7 +17,7 @@ var IdentifyCode = React.createClass({
 	},
 	componentDidMount:function(){
 		this.genRandomCode();
-		randerTimer = setInterval(this.genRandomCode,1000);
+		randerTimer = setInterval(this.genRandomCode,60000);
 	},
 	componentWillUnmount:function(){
 		clearInterval(randerTimer);
@@ -24,9 +29,12 @@ var IdentifyCode = React.createClass({
 			max:9999,
 			integer:true
 		}
-		this.setState({randomCode:rn(RandomOption)});
+		var randomCode = rn(RandomOption);
+		var deviceid = this.props.deviceid;
+		this.setState({randomCode:randomCode});
+		AppActions.sendIdentifyCode(deviceid,randomCode);
 	},
-	render: function(){
+	render:function(){
 		
 		var style = {
 			position:'absolute',
