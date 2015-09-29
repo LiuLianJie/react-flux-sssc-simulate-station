@@ -10,7 +10,7 @@ var lockFeedback = require('./server/lockFeedback');
 var client;
 var DEVICDID = '3d2eabda234f';
 
-app.set('port',process.env.PORT || 5001);
+app.set('port',process.env.PORT || 5050);
 app.set('views',__dirname+'/static');
 app.engine('.html',require('ejs').__express);
 app.set('view engine','html');

@@ -6,7 +6,7 @@ var Bag = require('./Bag.react');
 var AppActions = require('../actions/AppActions');
 var SimulateStore = require('../stores/SimulateStore');
 
-var socket = io.connect('http://127.0.0.1:5001');
+var socket = io.connect();
 
 var ALL_BAG_POSITIONS = [
 	{x:800,y:500},
