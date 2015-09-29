@@ -11,8 +11,7 @@ var boxImg = {
 var StationBG = React.createClass({
 	
 	propTypes:{
-		status:ReactPropTypes.bool.isRequired,
-		deviceid:ReactPropTypes.string
+		status:ReactPropTypes.bool.isRequired
 	},
 	render: function(){
 		var style = {
@@ -26,13 +25,13 @@ var StationBG = React.createClass({
 				width:265,
 				height:98.5,
 				position:'absolute',
-				top:27.5,
-				left:19,
+				top:22,
+				left:12,
 				zIndex:3,
 			},
 			view:{
 				width:0,
-				height:0,
+				height:0
 			}
 		}
 		var isOpened = this.props.status;
@@ -40,7 +39,7 @@ var StationBG = React.createClass({
 			<div style={style.view}>
 				<image src={isOpened? boxImg.opened : boxImg.closed } style={style.box}/>
 				<image src="./imgs/stationbg.png" style={style.image}/>
-				<IdentifyCode deviceid = {this.props.deviceid}/>
+				<IdentifyCode />
 			</div>
 		)
 

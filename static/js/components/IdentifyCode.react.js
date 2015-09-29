@@ -1,14 +1,12 @@
 'use strict';
 
 var React = require('react');
-var rn = require('random-number');
-var ReactPropTypes = React.PropTypes;
 var randerTimer = null;
 var AppActions = require('../actions/AppActions');
 
 var IdentifyCode = React.createClass({
 	propTypes:function(){
-		deviceid:ReactPropTypes.string
+
 	},
 	getInitialState:function(){
 		return {
@@ -24,22 +22,16 @@ var IdentifyCode = React.createClass({
 		randerTimer = null;
 	},
 	genRandomCode:function(){
-		var RandomOption = {
-			min:1000,
-			max:9999,
-			integer:true
-		}
-		var randomCode = rn(RandomOption);
-		var deviceid = this.props.deviceid;
-		this.setState({randomCode:randomCode});
-		AppActions.sendIdentifyCode(deviceid,randomCode);
+		AppActions.sendIdentifyCode(function(randomCode){
+			console.log('randomCode : ' + randomCode);
+			this.setState({randomCode:randomCode});
+		}.bind(this));
 	},
 	render:function(){
-		
 		var style = {
 			position:'absolute',
-			top:95,
-			left:488,
+			top:81,
+			left:476,
 			color:'white',
 			zIndex:4
 		}

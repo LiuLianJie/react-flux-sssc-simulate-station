@@ -10,7 +10,7 @@
 var http = require('http');
 var querystring = require('querystring');
 
-var lockFeedback = function(data,callback){
+var feedback = function(data,callback){
 	if(!data) return;
 
     data = querystring.stringify(data);  
@@ -33,7 +33,7 @@ var lockFeedback = function(data,callback){
 			});
 			serversendback.on('end',function(){
 				var res = JSON.parse(body);
-				callback(res);
+				callback();
 			});
 		}else{
 
@@ -43,13 +43,4 @@ var lockFeedback = function(data,callback){
 	req.end();
 }
 
-module.exports = lockFeedback;
-/*
-var data = {
-	station_no:'17234132',
-	lock_no:'1'
-}
-lockFeedback(data,function(response){
-	console.log(response);
-})
-*/
+module.exports = feedback;

@@ -6,10 +6,11 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var ioSocket;
 var net = require('net-socket');
+var lockFeedback = require('./server/lockFeedback');
 var client;
-var DEVICDID = '17234132';
+var DEVICDID = '3d2eabda234f';
 
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 5001);
 app.set('views',__dirname+'/static');
 app.engine('.html',require('ejs').__express);
 app.set('view engine','html');
@@ -28,6 +29,17 @@ app.get('/getdeviceid',function(req,res){
 	res.json(data);
 });
 
+app.get('/closelock',function(req,res){
+	var lock_no = req.query.lock_no;
+	var data = {
+		station_no:DEVICDID,
+		lock_no:lock_no
+	};
+	lockFeedback(data,function(response){
+		console.log(response);
+	});
+});
+
 server.listen(app.get('port'),function(){
 	console.log('server listening on port ' + app.get('port'));
 });	
@@ -36,7 +48,7 @@ io.on('connection',function(socket){
 	ioSocket = socket;
 	ioSocket.emit('news',{hello:'world'});
 	ioSocket.on('my other event',function(data){
-		console.log(data);
+		//console.log(data);
 	});
 });
 
@@ -53,7 +65,9 @@ var handlelock = function(data){
 	}
 };
 
-client = net.connect(8086,'127.0.0.1');
+var server = '120.24.174.248';
+//var server = '127.0.0.1';
+client = net.connect(8086,server);
 client.on('connect',function(){
 	console.log('connect to the server');
 });

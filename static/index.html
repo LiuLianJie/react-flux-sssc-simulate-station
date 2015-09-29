@@ -4,13 +4,80 @@
     <meta charset="utf-8">
     <title>sssc-simulate-station</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.1.4/semantic.min.css">
   </head>
   <body>
   	<div id="app"></div>
-  	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script src="js/bundle.js"></script>
+  	<div class="btnbar">
+          <button onClick="cabinetShow()">快递员下载</button>
+          <button onClick="qqShow()">QQ演示</button>
+          <button onClick="weixinShow()">微信演示</button>
+    </div>
+    
+    <div class="ui basic modal" id="cabinet-qr">
+      <i class="close icon"></i>
+      <div class="header">
+        快递员app
+      </div>
+      <div class="image content">
+        <div class="image">
+          <img src="/imgs/cabinetqr.png">
+        </div>
+        <div class="description">
+          <p>请使用微信或其他扫描软件，扫左边二维码，即可下载快递员app</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ui basic modal" id="qq-qr">
+      <i class="close icon"></i>
+      <div class="header">
+        QQ 取件二维码
+      </div>
+      <div class="image content">
+        <div class="image">
+          <img src="/imgs/qqqr.png">
+        </div>
+        <div class="description">
+          <p>请使用QQ扫左边二维码，即可取出您的快件</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ui basic modal" id="weixin-qr">
+      <i class="close icon"></i>
+      <div class="header">
+        微信 取件二维码
+      </div>
+      <div class="image content">
+        <div class="image">
+          <img src="/imgs/weiqr.png">
+        </div>
+        <div class="description">
+          <p>请使用微信扫左边二维码，即可取出您的快件</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="js/bundle.min.js"></script>
+    <script type="text/javascript" src="//oss.maxcdn.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script type="text/javascript" src="//oss.maxcdn.com/semantic-ui/2.1.4/components/dimmer.min.js"></script>
+    <script type="text/javascript" src="//oss.maxcdn.com/semantic-ui/2.1.4/components/transition.min.js"></script>
+    <script type="text/javascript" src="//oss.maxcdn.com/semantic-ui/2.1.4/components/modal.min.js"></script>
+
     <script type="text/javascript">
-    	
+       function cabinetShow(){
+          $('#cabinet-qr').modal('show');
+       }
+
+       function qqShow(){
+          $('#qq-qr').modal('show');
+       }
+
+       function weixinShow(){
+          $('#weixin-qr').modal('show');
+       }
     </script>
   </body>
 </html>
