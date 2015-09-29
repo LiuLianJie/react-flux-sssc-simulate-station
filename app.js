@@ -65,9 +65,8 @@ var handlelock = function(data){
 	}
 };
 
-var server = '120.24.174.248';
-//var server = '127.0.0.1';
-client = net.connect(8086,server);
+
+client = net.connect(8086,'120.24.174.248');
 client.on('connect',function(){
 	console.log('connect to the server');
 });
