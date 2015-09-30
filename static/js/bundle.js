@@ -30158,6 +30158,14 @@ var StationBG = React.createClass({displayName: "StationBG",
 			view:{
 				width:0,
 				height:0
+			},
+			qr:{
+				width:70,
+				height:70,
+				position:'absolute',
+				top:290,
+				left:468,
+				zIndex:5,
 			}
 		}
 		var isOpened = this.props.status;
@@ -30165,7 +30173,8 @@ var StationBG = React.createClass({displayName: "StationBG",
 			React.createElement("div", {style: style.view}, 
 				React.createElement("image", {src: isOpened? boxImg.opened : boxImg.closed, style: style.box}), 
 				React.createElement("image", {src: "./imgs/stationbg.png", style: style.image}), 
-				React.createElement(IdentifyCode, null)
+				React.createElement(IdentifyCode, null), 
+				React.createElement("image", {src: "./imgs/qqqr.png", style: style.qr})
 			)
 		)
 

@@ -32,6 +32,14 @@ var StationBG = React.createClass({
 			view:{
 				width:0,
 				height:0
+			},
+			qr:{
+				width:70,
+				height:70,
+				position:'absolute',
+				top:290,
+				left:468,
+				zIndex:5,
 			}
 		}
 		var isOpened = this.props.status;
@@ -40,6 +48,7 @@ var StationBG = React.createClass({
 				<image src={isOpened? boxImg.opened : boxImg.closed } style={style.box}/>
 				<image src="./imgs/stationbg.png" style={style.image}/>
 				<IdentifyCode />
+				<image src="./imgs/qqqr.png" style={style.qr}/>
 			</div>
 		)
 
